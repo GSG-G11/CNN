@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import Card from '../Card/Card';
 import './News.css';
 
@@ -6,12 +7,14 @@ function News() {
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch(
-      'https://newsapi.org/v2/everything?q=Apple&from=2022-04-12&sortBy=popularity&apiKey=12e941912db6470582ba9b98234b84f2',
-    )
+    const abortController = new AbortController();
+    fetch('https://newsapi.org/v2/everything?q=Apple&from=2022-04-12&sortBy=popularity&apiKey=12e941912db6470582ba9b98234b84f2', { signal: abortController.signal })
       .then((res) => res.json())
       .then((Data) => setData(Data.articles))
-      .catch((err) => console.log(err));
+      .catch(() => toast.error('Server Erorr !'));
+    return () => {
+      abortController.abort();
+    };
   }, []);
   return (
     <div className="news">
@@ -24,9 +27,12 @@ function News() {
       />
       <div className="Cards">
         {
-          data.map((obj) => <Card obj={obj} />)
+          data.filter((obj) => (obj.title.includes(search)
+          || obj.title.includes(search[0].toUpperCase())))
+            .map((obj) => <Card obj={obj} />)
         }
       </div>
+      <ToastContainer />
     </div>
   );
 }
