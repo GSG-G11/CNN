@@ -27,7 +27,7 @@ function News() {
   useEffect(() => {
     const abortController = new AbortController();
     axios
-      .request(options)
+      .request(options, { signal: abortController.signal })
       .then((response) => {
         setData(response.data.value);
         setLoading(false);
@@ -39,7 +39,6 @@ function News() {
       abortController.abort();
     };
   }, []);
-  console.log(data);
   return (
     <div className="news" id="news">
       <h2> News </h2>
