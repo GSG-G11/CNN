@@ -1,19 +1,17 @@
 import React from 'react';
 import './Card.css';
 
-// eslint-disable-next-line no-unused-vars
 function Card(_props) {
   const {
     obj: {
-      urlToImage, publishedAt, author, title, description, url,
+      image, datePublished, name, description, url,
     },
   } = _props;
   return (
-    <div className="Card" key={publishedAt}>
-      <img src={urlToImage} alt="img" />
-      <span className="timeAt">{publishedAt.split('T')[0]}</span>
-      <span className="author">{author}</span>
-      <p className="titel">{title}</p>
+    <div className="Card" key={datePublished}>
+      <img src={image.thumbnail.contentUrl} alt="img" />
+      <span className="timeAt">{datePublished.split('T')[0]}</span>
+      <p className="titel">{name}</p>
       <p className="description">{description.split('<')[0]}</p>
       <a href={url}>
         <button type="button" className="moreBtn">

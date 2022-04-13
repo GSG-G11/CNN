@@ -4,29 +4,42 @@ import Card from '../Card/Card';
 import Loading from '../Loading/Loading';
 import './News.css';
 
+const axios = require('axios');
+
+const options = {
+  method: 'GET',
+  url: 'https://bing-news-search1.p.rapidapi.com/news',
+  params: { safeSearch: 'Off', textFormat: 'Raw' },
+  headers: {
+    'X-BingApis-SDK': 'true',
+    'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
+    'X-RapidAPI-Key': '9eeb5e7ab5msh6d838c238f409a7p1b103cjsn724c693ca437',
+  },
+};
+
 function News() {
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const filterData = data.filter(
-    (obj) => obj.title.includes(search) || obj.title.includes(search[0].toUpperCase()),
+    (obj) => obj.name.includes(search) || obj.name.includes(search[0].toUpperCase()),
   );
   useEffect(() => {
     const abortController = new AbortController();
-    fetch(
-      'https://newsapi.org/v2/everything?q=Apple&from=2022-04-12&sortBy=popularity&apiKey=12e941912db6470582ba9b98234b84f2',
-      { signal: abortController.signal },
-    )
-      .then((res) => res.json())
-      .then((Data) => {
-        setData(Data.articles);
+    axios
+      .request(options)
+      .then((response) => {
+        setData(response.data.value);
         setLoading(false);
       })
-      .catch(() => toast.error('Server Erorr !'));
+      .catch(() => {
+        toast.error('Server Erorr !');
+      });
     return () => {
       abortController.abort();
     };
   }, []);
+  console.log(data);
   return (
     <div className="news" id="news">
       <h2> News </h2>
