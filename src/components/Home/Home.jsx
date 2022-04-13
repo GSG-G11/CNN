@@ -5,12 +5,11 @@ function Home() {
   return (
     <div className="container">
       <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea minima, rem
-        quasi
+        Why You Should Follow the News ?
+        <br />
+        Reading the news makes you a more interesting person , To Participate in the transmission of
+        history,and In order to understand our present cultural moment.
       </p>
-      <a href="#hhh">
-        <button type="button">Go to News</button>
-      </a>
     </div>
   );
 }
