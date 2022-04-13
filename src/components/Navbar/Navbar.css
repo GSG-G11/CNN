@@ -1,6 +1,9 @@
 .header {
   padding: 20px 50px;
   position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .header img {
@@ -8,4 +11,18 @@
   width: 100px;
   display: block;
   margin-left: 20px;
+}
+
+.link-news{
+  text-decoration: none;
+  font-size: 40px;
+  font-weight: bold;
+  color: red;
+  margin-right: 100px;
+  transition:0.3s ease-in-out;
+  font-family: 'Grape Nuts', cursive;
+  
+}
+.link-news:hover{
+  border-bottom:2px solid #fff;
 }
