@@ -8,7 +8,7 @@ function Home() {
         Why You Should Follow the News ?
         <br />
         Reading the news makes you a more interesting person , To Participate in the transmission of
-        history,and In order to understand our present cultural moment
+        history,and In order to understand our present cultural moment.
       </p>
     </div>
   );
