@@ -1,18 +1,9 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-html{
-    margin: 0;
-    padding: 0;
-}
 .container {
   z-index: -2;
-  background-image: url(https://images.pexels.com/photos/3095621/pexels-photo-3095621.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
+  background-image: url(https://images.pexels.com/photos/347682/pexels-photo-347682.jpeg?cs=srgb&dl=pexels-mateusz-dach-347682.jpg&fm=jpg);
   background-size: cover;
   position: relative;
-  height: 100vh;
+  height: 85vh;
   top: 0;
   border: 1px solid transparent;
   display: flex;
@@ -22,18 +13,21 @@ html{
   padding: 50px;
 }
 
-p {
+.container p {
   color: white;
   font-size: 20px;
   width: 40%;
   text-align: left;
-  margin-bottom: 20px;
+  margin-top: 120px;
+  font-family: 'Montserrat', sans-serif;
+  white-space: 5px;
+  letter-spacing: 2px;
 }
-a {
+.container a {
   text-decoration: none;
 }
 
-button {
+.container  button{
     all: unset;
     background-color: red;
     padding: 5px 10px;
@@ -44,7 +38,7 @@ button {
     position: relative;
     bottom: 0;
 }
-button:hover{
+.container button:hover{
     transform: scale(1.1);
 }
 
