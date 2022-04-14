@@ -4,16 +4,17 @@ import './Card.css';
 function Card(_props) {
   const {
     obj: {
-      image, datePublished, name, description, url,
+      author, time, title, content, readMoreUrl, imageUrl,
     },
   } = _props;
   return (
-    <div className="Card" key={datePublished}>
-      <img src={image.thumbnail.contentUrl} alt="img" />
-      <span className="timeAt">{datePublished.split('T')[0]}</span>
-      <p className="titel">{name}</p>
-      <p className="description">{description.split('<')[0]}</p>
-      <a href={url}>
+    <div className="Card" key={time}>
+      <img src={imageUrl} alt="img" />
+      <span className="timeAt">{time}</span>
+      <span>{author}</span>
+      <p className="titel">{title}</p>
+      <p className="description">{content.split('<')[0]}</p>
+      <a href={readMoreUrl}>
         <button type="button" className="moreBtn">
           Read more
         </button>
