@@ -4,32 +4,19 @@ import Card from '../Card/Card';
 import Loading from '../Loading/Loading';
 import './News.css';
 
-const axios = require('axios');
-
-const options = {
-  method: 'GET',
-  url: 'https://bing-news-search1.p.rapidapi.com/news',
-  params: { safeSearch: 'Off', textFormat: 'Raw' },
-  headers: {
-    'X-BingApis-SDK': 'true',
-    'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
-    'X-RapidAPI-Key': '9eeb5e7ab5msh6d838c238f409a7p1b103cjsn724c693ca437',
-  },
-};
-
 function News() {
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const filterData = data.filter(
-    (obj) => obj.name.includes(search) || obj.name.includes(search[0].toUpperCase()),
+    (obj) => obj.title.includes(search) || obj.title.includes(search[0].toUpperCase()),
   );
   useEffect(() => {
     const abortController = new AbortController();
-    axios
-      .request(options, { signal: abortController.signal })
-      .then((response) => {
-        setData(response.data.value);
+    fetch('https://inshortsapi.vercel.app/news?category=', { signal: abortController.s })
+      .then((res) => res.json())
+      .then((Data) => {
+        setData(Data.data);
         setLoading(false);
       })
       .catch(() => {
